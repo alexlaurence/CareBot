@@ -1,0 +1,725 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "importType": "LEX",
+    "importFormat": "JSON"
+  },
+  "resource": {
+    "name": "ChatBotOxHack",
+    "version": "2",
+    "intents": [
+      {
+        "name": "AskGrades",
+        "version": "19",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "I would like to know about my grade prediction",
+          "What's my predicted grades",
+          "Will I fail",
+          "Will I pass",
+          "Predict my grades"
+        ],
+        "slots": [
+          {
+            "name": "absences",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.NUMBER",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "How many absences have you had this year?"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+            },
+            "priority": 11,
+            "sampleUtterances": []
+          },
+          {
+            "name": "age",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.NUMBER",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Sure thing. How old are you?"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+            },
+            "priority": 1,
+            "sampleUtterances": []
+          },
+          {
+            "name": "Dalc",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.NUMBER",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "And how about for workdays?"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+            },
+            "priority": 9,
+            "sampleUtterances": []
+          },
+          {
+            "name": "famrel",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.NUMBER",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Great! Please rate your family relationship with (1 - very bad to 5 - excellent) "
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+            },
+            "priority": 6,
+            "sampleUtterances": []
+          },
+          {
+            "name": "famsup",
+            "slotConstraint": "Required",
+            "slotType": "binary",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Fair. Do you receive educational support from your family?"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[]}"
+            },
+            "priority": 4,
+            "sampleUtterances": []
+          },
+          {
+            "name": "gone",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.NUMBER",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What was your grades for your first period? (0-20)"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+            },
+            "priority": 14,
+            "sampleUtterances": []
+          },
+          {
+            "name": "goout",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.NUMBER",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "From 1-5, How likely are you to go out with friends?"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+            },
+            "priority": 10,
+            "sampleUtterances": []
+          },
+          {
+            "name": "gthree",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.NUMBER",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "And what about your final grade?"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+            },
+            "priority": 16,
+            "sampleUtterances": []
+          },
+          {
+            "name": "gtwo",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.NUMBER",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What about your second period? (0-20)"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+            },
+            "priority": 15,
+            "sampleUtterances": []
+          },
+          {
+            "name": "health",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.NUMBER",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Thanks! What's your current health status (from 1 - very bad to 5 - very good)"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+            },
+            "priority": 7,
+            "sampleUtterances": []
+          },
+          {
+            "name": "internet",
+            "slotConstraint": "Required",
+            "slotType": "binary",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Do you have internet access at home?"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[]}"
+            },
+            "priority": 18,
+            "sampleUtterances": []
+          },
+          {
+            "name": "nursery",
+            "slotConstraint": "Required",
+            "slotType": "binary",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Have you attended nursery?"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[]}"
+            },
+            "priority": 17,
+            "sampleUtterances": []
+          },
+          {
+            "name": "paid",
+            "slotConstraint": "Required",
+            "slotType": "binary",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Do you pay to take extra classes within the course subject?"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[]}"
+            },
+            "priority": 13,
+            "sampleUtterances": []
+          },
+          {
+            "name": "schoolsup",
+            "slotConstraint": "Required",
+            "slotType": "binary",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Makes sense. Do you partake in extracurricular activities?"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[]}"
+            },
+            "priority": 5,
+            "sampleUtterances": []
+          },
+          {
+            "name": "sex",
+            "slotConstraint": "Required",
+            "slotType": "sex",
+            "slotTypeVersion": "1",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What's your sex? (M/F)"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[]}"
+            },
+            "priority": 12,
+            "sampleUtterances": []
+          },
+          {
+            "name": "studytime",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.DURATION",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "OK. How many hours do you study every week?"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+            },
+            "priority": 3,
+            "sampleUtterances": []
+          },
+          {
+            "name": "traveltime",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.DURATION",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Thanks! How long does it take for you to travel to school?"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+            },
+            "priority": 2,
+            "sampleUtterances": []
+          },
+          {
+            "name": "Walc",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.NUMBER",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "OK. What's your weekend alcohol consumption? (numeric: from 1 - very low to 5 - very high) "
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+            },
+            "priority": 8,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "seekHelp",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:042563187190:function:CrisisBotFunction",
+            "messageVersion": "1.0"
+          }
+        },
+        "sampleUtterances": [
+          "I am feeling sad",
+          "I am sad",
+          "I am upset"
+        ],
+        "slots": [
+          {
+            "name": "qfive",
+            "slotConstraint": "Required",
+            "slotType": "binary",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Have you started to work out or worked out the details of how to kill yourself? Do you intend to carry out this plan?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 5,
+            "sampleUtterances": []
+          },
+          {
+            "name": "qfour",
+            "slotConstraint": "Required",
+            "slotType": "binary",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Have you had these thoughts and had some intention of acting on them?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 4,
+            "sampleUtterances": []
+          },
+          {
+            "name": "qone",
+            "slotConstraint": "Required",
+            "slotType": "binary",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Have you wished you were dead or wished you could go to sleep and not wake up?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "sampleUtterances": []
+          },
+          {
+            "name": "qthree",
+            "slotConstraint": "Required",
+            "slotType": "binary",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Have you been thinking about how you might do this?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 3,
+            "sampleUtterances": []
+          },
+          {
+            "name": "qtwo",
+            "slotConstraint": "Required",
+            "slotType": "binary",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Have you actually had any thoughts of killing yourself?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 2,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "askFeeling",
+        "version": "8",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "how are you",
+          "how's it going",
+          "what's up",
+          "wassup",
+          "you cool"
+        ],
+        "slots": []
+      },
+      {
+        "name": "suicideIntensity",
+        "version": "4",
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:042563187190:function:CrisisBotFunction",
+            "messageVersion": "1.0"
+          }
+        },
+        "sampleUtterances": [
+          "I have been feeling suicidal thoughts",
+          "I want to kill myself",
+          "I want to die",
+          "I feel awful",
+          "I am depressed"
+        ],
+        "slots": [
+          {
+            "name": "qsuifive",
+            "slotConstraint": "Required",
+            "slotType": "OneToSix",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What sort of reasons did you have for thinking about wanting to die or killing yourself? Was it to end the pain or stop the way you were feeling (in other words you couldn’t go on living with this pain or how you were feeling) or was it to get attention, revenge or a reaction from others? Or both? (1) Completely to get attention, revenge or a reaction from others (4) Mostly to end or stop the pain (you couldn’t go on (2) Mostly to get attention, revenge or a reaction from others living with the pain or how you were feeling) (3) Equally to get attention, revenge or a reaction from others (5) Completely to end or stop the pain (you couldn’t go on and to end/stop the pain living with the pain or  how you were feeling) (6) Does not apply"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 6,
+            "sampleUtterances": []
+          },
+          {
+            "name": "qsuifour",
+            "slotConstraint": "Required",
+            "slotType": "OneToSix",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Are there things - anyone or anything (e.g., family, religion, pain of death) - that stopped you from wanting to die or acting on thoughts of committing suicide?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 5,
+            "sampleUtterances": []
+          },
+          {
+            "name": "qsuione",
+            "slotConstraint": "Required",
+            "slotType": "OneToFive",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "How many times have you had these thoughts? (1) Less than once a week    (2) Once a week   (3)  2 - 5 times in week    (4) Daily or almost daily    ( 5) Many times each day"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 2,
+            "sampleUtterances": []
+          },
+          {
+            "name": "qsuithree",
+            "slotConstraint": "Required",
+            "slotType": "OneToSix",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Could /can you stop thinking about killing yourself or wanting to die if you want to? (1) Easily able to control thoughts (4) Can control thoughts with a lot of difficulty (2) Can control thoughts with little difficulty (5) Unable to control thoughts (3) Can control thoughts with some difficulty,  (6) Does not attempt to control thoughts"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 4,
+            "sampleUtterances": []
+          },
+          {
+            "name": "qsuitwo",
+            "slotConstraint": "Required",
+            "slotType": "OneToFive",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "When you have the thoughts how long do they last? (1) Fleeting  - few seconds or minutes                                                 (4) 4 - 8 hours/most of day (2) Less than 1 hour/some of the time           (5) More than 8 hours/persistent or continuous (3) 1 - 4 hours/a lot of time"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 3,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "nothingIntent",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "bye",
+          "goodbye",
+          "byebye",
+          "see ya"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Have a nice day!",
+              "groupNumber": 1
+            }
+          ]
+        }
+      },
+      {
+        "name": "smallTalk",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "hi",
+          "hello",
+          "hey",
+          "hey there"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Hello! How's it going?",
+              "groupNumber": 1
+            },
+            {
+              "contentType": "PlainText",
+              "content": "Heya",
+              "groupNumber": 1
+            },
+            {
+              "contentType": "PlainText",
+              "content": "Hi!",
+              "groupNumber": 1
+            },
+            {
+              "contentType": "PlainText",
+              "content": "Howdy!",
+              "groupNumber": 1
+            }
+          ]
+        }
+      }
+    ],
+    "slotTypes": [
+      {
+        "name": "OneToSix",
+        "version": "2",
+        "enumerationValues": [
+          {
+            "value": "1"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "3"
+          },
+          {
+            "value": "4"
+          },
+          {
+            "value": "5"
+          },
+          {
+            "value": "6"
+          }
+        ],
+        "valueSelectionStrategy": "TOP_RESOLUTION"
+      },
+      {
+        "description": "yes or no",
+        "name": "binary",
+        "version": "2",
+        "enumerationValues": [
+          {
+            "value": "No"
+          },
+          {
+            "value": "Yes"
+          }
+        ],
+        "valueSelectionStrategy": "ORIGINAL_VALUE"
+      },
+      {
+        "description": "male or female",
+        "name": "sex",
+        "version": "1",
+        "enumerationValues": [
+          {
+            "value": "F",
+            "synonyms": []
+          },
+          {
+            "value": "M",
+            "synonyms": []
+          }
+        ],
+        "valueSelectionStrategy": "ORIGINAL_VALUE"
+      },
+      {
+        "name": "OneToFive",
+        "version": "2",
+        "enumerationValues": [
+          {
+            "value": "1"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "3"
+          },
+          {
+            "value": "4"
+          },
+          {
+            "value": "5"
+          }
+        ],
+        "valueSelectionStrategy": "TOP_RESOLUTION"
+      }
+    ],
+    "voiceId": "Salli",
+    "childDirected": true,
+    "locale": "en-US",
+    "idleSessionTTLInSeconds": 300,
+    "clarificationPrompt": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, can you please repeat that?"
+        }
+      ],
+      "maxAttempts": 5
+    },
+    "abortStatement": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, I am not smart enough to understand that yet. Blame my creators. Goodbye."
+        }
+      ]
+    }
+  }
+}
