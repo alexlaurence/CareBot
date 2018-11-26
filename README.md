@@ -1,5 +1,5 @@
 # CareBot
-A Care Bot That Loves All
+A Care Bot That Loves All. Built for the 2018 Oxford Hack.
 
 ## Inspiration
 **Enhancing students well-being and academic performance is a major concern for societies.**
